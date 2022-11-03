@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(43deg, rgba(38, 42, 48, 1) 26%, rgba(54, 59, 66, 1) 82%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    width: 20rem;
+    height: 25rem;
+
+    border-radius: 1rem;
+
+    box-shadow: 0 0 10px black;
+
+    background: linear-gradient(43deg, rgba(38, 42, 48, 1) 26%, rgba(54, 59, 66, 1) 82%);
+}
+
+
+
+.upper-div {
+    height: 60%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-image {
+    background: none;
+
+    margin-bottom: 2em;
+
+    width: 7rem;
+}
+
+.lower-div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.username-input,
+.password-input {
+    text-align: center;
+
+    border: 2px solid black;
+    border-radius: .4rem;
+
+    font-family: "Roboto";
+}
+
+.login-btn {
+    box-sizing: border-box;
+
+
+    font-family: "Roboto";
+    font-weight: 200;
+
+    background: none;
+    color: white;
+    border: none;
+
+    padding: .5rem 1rem;
+
+    border-radius: 1rem;
+    margin-top: 1em;
+    font-size: 1.3rem;
+    background: rgb(103, 227, 97);
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+
+    cursor: pointer;
+
+    opacity: .8;
+    transition: 400ms;
+
+    display: flex;
+}
+
+.login-btn:hover {
+    opacity: 1;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.login-arrow {
+    width: 1.4rem;
+
+    margin-left: .5rem;
+}
+
+
+.eye-image {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    width: 1rem;
+
+    cursor: pointer;
+
+    transform: translateY(-50%);
+}
