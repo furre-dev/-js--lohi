@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+:root {
+    --slider-green: rgb(1, 226, 88, 1);
+    --slider-red: rgb(255, 85, 72, 1);
+    --left: 0%;
+    --right: -100%;
+    --shadow-opacity: 0.2;
+}
+
 
 * {
     box-sizing: border-box;
@@ -12,11 +20,16 @@ body {
     background: linear-gradient(55deg, rgba(8, 148, 136, 1) 0%, rgba(42, 42, 42, 1) 100%);
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+
+
 .main-container {
+    position: relative;
+
     width: 50rem;
     background: linear-gradient(43deg, rgba(38, 42, 48, 1) 26%, rgba(54, 59, 66, 1) 82%);
 
@@ -34,6 +47,53 @@ body {
     max-width: 90%;
 
     box-shadow: 0px 0px 20px black;
+}
+
+.last-rounds-ul {
+    padding: 1rem;
+    position: absolute;
+    max-width: 90%;
+    list-style: none;
+
+    display: flex;
+    gap: 1rem;
+
+    flex-direction: row-reverse;
+
+    top: -50px;
+    left: 50%;
+
+    overflow: hidden;
+
+    transform: translateX(-50%);
+}
+
+li:nth-last-child(1) > div {
+    box-shadow: 0 0 10px 1px rgb(228, 227, 228);
+}
+
+.circles {
+    opacity: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    box-shadow: 0 0 15px black;
+
+    width: 1.12rem;
+    aspect-ratio: 1/1;
+
+    border-radius: 50%;
+    background-color: black;
+}
+
+.win-circle {
+    background: #128124;
+}
+.lose-circle {
+    background:#801d1d;
 }
 
 .title {
@@ -75,11 +135,43 @@ body {
     font-size: 2.5rem;
 }
 
+.glow-onOff-container {
+    width: 90%;
+    margin-top: 3em;
+}
+
+.glow-onOff {
+box-sizing: border-box;
+
+    font-family: "Roboto";
+    font-style: italic;
+    font-weight: 500;
+
+    border: none;
+
+    background: #2d3436;
+    color: white;
+
+
+    box-shadow: 0 0 10px black;
+
+    border-radius: 2rem;
+    padding: .6rem .5rem;
+
+    cursor: pointer;
+
+    transition: all .1s;
+}
+
+.glow-onOff:active {
+    scale: 0.9;
+}
+
 .bar-container {
     position: relative;
     overflow: hidden;
 
-    margin-top: 3em;
+    margin-top: 1em;
 
     width: 90%;
     height: 5rem;
@@ -101,8 +193,8 @@ body {
 }
 
 .guess-bar {
+    position: relative;
     -webkit-appearance: none;
-
 
     height: .2rem;
     min-width: 100%;
@@ -112,16 +204,41 @@ body {
     outline: none;
 
     /* Lower */
-    background: linear-gradient(90deg, #FF5548 50%, #01E258 50%);
+    background: linear-gradient(90deg, rgb(255, 85, 72, 1)100%, 64%) 50%, #01E258 50%;
     /* Higher */
-    background: linear-gradient(90deg, #01E258 50%, #FF5548 50%);
+    background: linear-gradient(90deg, rgb(1, 226, 88) 50%, #FF5548 50%);  
 }
+
+
+
+.guess-bar:before {
+    box-shadow: 0px 0px 25px 10px var(--slider-green);
+    left: var(--left);
+
+    transform: translateX(-50%);
+    opacity: var(--shadow-opacity);
+  }
+  .guess-bar:after {
+    box-shadow: 0px 0px 25px 10px var(--slider-red);
+    right: var(--right);
+
+    transform: translateX(-50%) scaleX(1);
+    opacity: var(--shadow-opacity);
+  }
+
+  .guess-bar:before, .guess-bar:after {
+    content: " ";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
 
 .guess-bar::-webkit-slider-thumb {
     -webkit-appearance: none;
 
     cursor: pointer;
-
+    
     height: 5rem;
     width: 4px;
 

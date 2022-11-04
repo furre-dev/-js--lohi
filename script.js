@@ -21,8 +21,29 @@ const lastRound = document.querySelector(".last-round");
 const rollButton = document.querySelector(".roll-btn");
 const innerCircle = document.querySelector(".inner-circle");
 
-console.log(100 * (100 / 50));
-console.log(100 * (100 / 50));
+const glowToggle = document.querySelector(".glow-onOff");
+
+glowToggle.addEventListener("click", toggleGlow)
+
+function toggleGlow() {
+    glowToggle.classList.toggle("active");
+    if (glowToggle.classList.contains("active")) {
+        document.documentElement.style.setProperty('--shadow-opacity', '0.2');
+    }else {
+        document.documentElement.style.setProperty('--shadow-opacity', '0');
+    }
+    
+}
+
+/* let eben = window.getComputedStyle(
+	document.querySelector('.guess-bar'), ':after'
+).getPropertyValue('right');
+
+console.log(eben) */
+
+document.documentElement.style.setProperty('--left', '0%');
+document.documentElement.style.setProperty('--right', '-100%');
+
 
 let balance = 100000;
 balanceElement.textContent = balance;
@@ -97,6 +118,10 @@ let overColor = "linear-gradient(90deg, #01E258 " + valuePoint + "%, #FF5548 " +
 let bgOverColor = "linear-gradient(90deg, rgba(1, 226, 88, 0.04) " + valuePoint + "%, rgba(255, 85, 72, 0.04) " + valuePoint + "%)";
 let bgUnderColor = "linear-gradient(90deg, rgba(255, 85, 72, 0.04) " + valuePoint + "%, rgba(1, 226, 88, 0.04) " + valuePoint + "%)";
 
+
+
+
+
 guessBar.style.background = overColor;
 barContainer.style.background = bgOverColor;
 
@@ -116,11 +141,21 @@ guessBar.addEventListener("mousemove", function () {
     if (!toggleBtn.classList.contains("higher")) {
         guessBar.style.background = overColor;
         barContainer.style.background = bgUnderColor;
+        document.documentElement.style.setProperty("--slider-green","rgb(1, 226, 88, 1)");
+        document.documentElement.style.setProperty("--slider-red","rgb(255, 85, 72, 1)")
 
     } else {
         guessBar.style.background = underColor;
         barContainer.style.background = bgOverColor;
+        document.documentElement.style.setProperty("--slider-green","rgb(255, 85, 72, 1)");
+        document.documentElement.style.setProperty("--slider-red","rgb(1, 226, 88, 1)")
     }
+
+    let procentCalcLeft = guessBar.value - 50;
+    let procentCalcRight = -guessBar.value - 50;
+
+    document.documentElement.style.setProperty('--left', procentCalcLeft+"%");
+document.documentElement.style.setProperty('--right', procentCalcRight+'%');
 
 })
 
@@ -140,18 +175,28 @@ guessBar.addEventListener("click", function () {
     if (!toggleBtn.classList.contains("higher")) {
         guessBar.style.background = overColor;
         barContainer.style.background = bgUnderColor;
+        document.documentElement.style.setProperty("--slider-green","rgb(1, 226, 88, 1)");
+        document.documentElement.style.setProperty("--slider-red","rgb(255, 85, 72, 1)")
 
     } else {
         guessBar.style.background = underColor;
         barContainer.style.background = bgOverColor;
+        document.documentElement.style.setProperty("--slider-green","rgb(255, 85, 72, 1)");
+        document.documentElement.style.setProperty("--slider-red","rgb(1, 226, 88, 1)")
+        
     }
+
+    let procentCalcLeft = guessBar.value - 50;
+    let procentCalcRight = -guessBar.value - 50;
+
+    document.documentElement.style.setProperty('--left', procentCalcLeft+"%");
+document.documentElement.style.setProperty('--right', procentCalcRight+'%');
 
 })
 
 function buttonClicked() {
     toggleButton(toggleBtn)
 }
-
 
 function toggleButton(button) {
     valuePoint = guessBar.value;
@@ -166,17 +211,50 @@ function toggleButton(button) {
 
         guessBar.style.background = underColor;
         barContainer.style.background = bgOverColor;
+        document.documentElement.style.setProperty("--slider-green","rgb(255, 85, 72, 1)");
+        document.documentElement.style.setProperty("--slider-red","rgb(1, 226, 88, 1)")
     } else {
         button.textContent = "UNDER";
         button.classList.remove("higher");
+        document.documentElement.style.setProperty("--slider-green","rgb(1, 226, 88, 1)");
+        document.documentElement.style.setProperty("--slider-red","rgb(255, 85, 72, 1)")
 
         guessBar.style.background = overColor;
         barContainer.style.background = bgUnderColor;
+        
     }
+}
+
+
+
+function lastRoundsCircles(wonOrLost) {
+    const newDiv = document.createElement("div");
+    const newLi = document.createElement("li");
+    const ul = document.querySelector(".last-rounds-ul");
+
+    if(ul.children.length > 20) {
+        ul.children[0].remove();
+    }
+
+    if(wonOrLost == "won") {
+        newDiv.classList.add("win-circle");
+        newDiv.classList.add("circles");
+        ul.append(newLi);
+        newLi.appendChild(newDiv);
+    }
+        else{
+            newDiv.classList.add("lose-circle");
+            newDiv.classList.add("circles");
+            ul.append(newLi);
+            newLi.appendChild(newDiv);
+        }
+       
 }
 
 function howMuchWonLost(wonOrLost, betamount) {
     lastRoundStatus.style.opacity = 100;
+
+    lastRoundsCircles(wonOrLost);
 
     if (wonOrLost == "won") {
         lastRoundWonLost.textContent = "won ";
