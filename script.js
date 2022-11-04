@@ -45,8 +45,8 @@ document.documentElement.style.setProperty('--left', '0%');
 document.documentElement.style.setProperty('--right', '-100%');
 
 
-let balance = 100000;
-balanceElement.textContent = balance;
+let balance = 10000;
+balanceElement.textContent = balance.toLocaleString("en-US");
 
 rollButton.addEventListener("click", rollRound)
 
