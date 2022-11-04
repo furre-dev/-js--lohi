@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 :root {
     --slider-green: rgb(1, 226, 88, 1);
     --slider-red: rgb(255, 85, 72, 1);
@@ -42,6 +43,7 @@ body {
     justify-content: center;
     align-items: center;
 
+    margin: 3em 0;
     padding: 2em 0;
 
     max-width: 90%;
@@ -68,7 +70,7 @@ body {
     transform: translateX(-50%);
 }
 
-li:nth-last-child(1) > div {
+li:nth-last-child(1)>div {
     box-shadow: 0 0 10px 1px rgb(228, 227, 228);
 }
 
@@ -92,8 +94,9 @@ li:nth-last-child(1) > div {
 .win-circle {
     background: #128124;
 }
+
 .lose-circle {
-    background:#801d1d;
+    background: #801d1d;
 }
 
 .title {
@@ -141,7 +144,7 @@ li:nth-last-child(1) > div {
 }
 
 .glow-onOff {
-box-sizing: border-box;
+    box-sizing: border-box;
 
     font-family: "Roboto";
     font-style: italic;
@@ -206,7 +209,7 @@ box-sizing: border-box;
     /* Lower */
     background: linear-gradient(90deg, rgb(255, 85, 72, 1)100%, 64%) 50%, #01E258 50%;
     /* Higher */
-    background: linear-gradient(90deg, rgb(1, 226, 88) 50%, #FF5548 50%);  
+    background: linear-gradient(90deg, rgb(1, 226, 88) 50%, #FF5548 50%);
 }
 
 
@@ -217,28 +220,30 @@ box-sizing: border-box;
 
     transform: translateX(-50%);
     opacity: var(--shadow-opacity);
-  }
-  .guess-bar:after {
+}
+
+.guess-bar:after {
     box-shadow: 0px 0px 25px 10px var(--slider-red);
     right: var(--right);
 
     transform: translateX(-50%) scaleX(1);
     opacity: var(--shadow-opacity);
-  }
+}
 
-  .guess-bar:before, .guess-bar:after {
+.guess-bar:before,
+.guess-bar:after {
     content: " ";
     height: 100%;
     position: absolute;
     top: 0;
     width: 100%;
-  }
+}
 
 .guess-bar::-webkit-slider-thumb {
     -webkit-appearance: none;
 
     cursor: pointer;
-    
+
     height: 5rem;
     width: 4px;
 
