@@ -162,12 +162,10 @@ li:nth-last-child(1)>div {
     padding: .6rem .5rem;
 
     cursor: pointer;
-
-    transition: all .1s;
 }
 
 .glow-onOff:active {
-    scale: 0.9;
+    scale: 0.97;
 }
 
 .bar-container {
